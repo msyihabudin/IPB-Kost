@@ -1,0 +1,13 @@
+/*  MAPS */
+#map_canvas {
+    position: fixed !important; 
+    top: 8%;  
+    width: 83% !important; 
+    height: 85% !important; 
+}
+.page-break-top {
+	background-color: white;
+    position: fixed !important; 
+    bottom: 0;  
+    width: 100% !important; 
+}
