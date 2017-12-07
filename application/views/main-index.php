@@ -31,7 +31,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                     	<?php if($this->session->has_userdata('admin_login') == FALSE) : ?>
-                        <a data-toggle="modal" href='#modalLogin' class="hvr-underline-reveal" title="Login">
+                        <a href='<?php base_url('user/login');?>' class="hvr-underline-reveal" title="Login">
                             <i class="fa fa-sign-in"></i> Login
                         </a>
                     	<?php else : ?>
@@ -42,8 +42,8 @@
                     </li>
                 </ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="<?php echo base_url() ?>" class="hvr-underline-reveal">Home</a></li>
-					<li><a  data-toggle="modal" href='#modal-about' class="hvr-underline-reveal">About</a></li>
+					<li><a href="#" class="hvr-underline-reveal">Home</a></li>
+					<li><a href='#' class="hvr-underline-reveal">About</a></li>
 				</ul>
 			</div>
 		</div>
