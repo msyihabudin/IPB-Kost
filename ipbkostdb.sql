@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `kategorikost` (
   `kost_id` int(11) NOT NULL,
   `kategori_id` int(11) NOT NULL,
   PRIMARY KEY (`kategorikost_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ipbkostdb.kategorikost: ~16 rows (approximately)
+-- Dumping data for table ipbkostdb.kategorikost: ~20 rows (approximately)
 /*!40000 ALTER TABLE `kategorikost` DISABLE KEYS */;
 INSERT INTO `kategorikost` (`kategorikost_id`, `kost_id`, `kategori_id`) VALUES
 	(1, 35, 1),
@@ -67,7 +67,10 @@ INSERT INTO `kategorikost` (`kategorikost_id`, `kost_id`, `kategori_id`) VALUES
 	(14, 36, 1),
 	(15, 36, 3),
 	(16, 37, 1),
-	(17, 37, 1);
+	(17, 37, 1),
+	(18, 38, 3),
+	(19, 39, 1),
+	(20, 40, 2);
 /*!40000 ALTER TABLE `kategorikost` ENABLE KEYS */;
 
 -- Dumping structure for table ipbkostdb.kost
@@ -82,12 +85,15 @@ CREATE TABLE IF NOT EXISTS `kost` (
   `amenities` text,
   `description` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ipbkostdb.kost: ~1 rows (approximately)
+-- Dumping data for table ipbkostdb.kost: ~3 rows (approximately)
 /*!40000 ALTER TABLE `kost` DISABLE KEYS */;
 INSERT INTO `kost` (`ID`, `name`, `price`, `latitude`, `longitude`, `address`, `photo`, `amenities`, `description`) VALUES
-	(37, 'Kost Pakde Sukardi', 350000, '-6.611069', '106.810910', 'Belakang restaurant taman seafood', '', 'AC, TV kabel, Telepon, Shower Panas & Dingin, Smooking Area', 'ok oce');
+	(37, 'Kost Pakde Sukardi', 350000, '-6.611069', '106.810910', 'Belakang restaurant taman seafood', '', 'AC, TV kabel, Telepon, Shower Panas & Dingin, Smooking Area', 'ok oce'),
+	(38, 'Jasmine Kos', 600000, '-6.6076999', '106.806285', 'Jl. Riau No. 38, Bogor', '', 'Wifi, Bed, Almari Pakaian, Kursi & Meja Belajar, Dapur, Parkir Motor', 'Tes tes'),
+	(39, 'Kost Ibu Lela', 600000, '-6.594648', '106.807431', 'Bogor Tengah', '', 'Bed, Almari Pakaian, Kursi & Meja Belajar, Parkir Motor', 'kost'),
+	(40, 'Kost Mas Uki', 700000, '-6.593604', '106.806881', 'Malabar', '', 'Bed, Almari Pakaian, Kursi & Meja Belajar, Parkir Motor', 'Kost');
 /*!40000 ALTER TABLE `kost` ENABLE KEYS */;
 
 -- Dumping structure for table ipbkostdb.tokens

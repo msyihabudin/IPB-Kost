@@ -33,22 +33,22 @@ class Welcome extends CI_Controller
 		);
 		$this->googlemaps->initialize($config);
 		foreach($this->searchQuery() as $key => $value) :
-		$marker = array();
-		$marker['position'] = "{$value->latitude}, {$value->longitude}";
+			$marker = array();
+			$marker['position'] = "{$value->latitude}, {$value->longitude}";
 
-		$marker['animation'] = 'DROP';
-		$marker['infowindow_content'] = '<div class="media" style="width:400px;">';
-		$marker['infowindow_content'] .= '<div class="media-left">';
-		$marker['infowindow_content'] .= '<img src="'.base_url("public/image/{$value->photo}").'" class="media-object" style="width:150px">';
-		$marker['infowindow_content'] .= '</div>';
-		$marker['infowindow_content'] .= '<div class="media-body">';
-		$marker['infowindow_content'] .= '<h5 class="media-heading">'.$value->name.'</h5>';
-		$marker['infowindow_content'] .= '<p>Harga : <strong>Rp. '.number_format($value->price).'</strong></p>';
-		$marker['infowindow_content'] .= '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora nihil doloremque saepe eos natus incidunt minus voluptatum consequatur maiores!</p>';
-		$marker['infowindow_content'] .= '</div>';
-		$marker['infowindow_content'] .= '</div>';
-		$marker['icon'] = base_url("public/icon/lodging-2.png");
-		$this->googlemaps->add_marker($marker);
+			$marker['animation'] = 'DROP';
+			$marker['infowindow_content'] = '<div class="media" style="width:400px;">';
+			$marker['infowindow_content'] .= '<div class="media-left">';
+			$marker['infowindow_content'] .= '<img src="'.base_url("public/image/{$value->photo}").'" class="media-object" style="width:150px">';
+			$marker['infowindow_content'] .= '</div>';
+			$marker['infowindow_content'] .= '<div class="media-body">';
+			$marker['infowindow_content'] .= '<h5 class="media-heading"><a href="'.base_url("welcome/detail/{$value->ID}").'">'.$value->name.'</a></h5>';
+			$marker['infowindow_content'] .= '<p>Harga : <strong>Rp. '.number_format($value->price).'</strong></p>';
+			$marker['infowindow_content'] .= '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora nihil doloremque saepe eos natus incidunt minus voluptatum consequatur maiores!</p>';
+			$marker['infowindow_content'] .= '</div>';
+			$marker['infowindow_content'] .= '</div>';
+			$marker['icon'] = base_url("public/icon/lodging-2.png");
+			$this->googlemaps->add_marker($marker);
 		endforeach;
 
 		$this->googlemaps->initialize($config);
@@ -134,6 +134,19 @@ class Welcome extends CI_Controller
 
 		$this->db->where('kost.latitude !=', NULL)
 				 ->where('kost.longitude !=', NULL);
+
+		return $this->db->get("kost")->result();
+	}
+
+	public function detail($id)
+	{
+		$this->db->select('kost.*, kategori.name as kategori');
+
+		$this->db->join('kategorikost', 'kost.ID = kategorikost.kategori_id', 'left');
+
+		$this->db->join('kategori', 'kategorikost.kategori_id = kategori.kategori_id', 'left');
+
+		$this->db->where('kost.ID =='.$id);
 
 		return $this->db->get("kost")->result();
 	}

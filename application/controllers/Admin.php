@@ -17,7 +17,7 @@ class Admin extends CI_Controller
 		if($this->session->has_userdata('admin_login')==FALSE) 
 			redirect(site_url());
 
-		$this->amenities = array('Wifi','AC','TV kabel','Telepon','Shower Panas & Dingin','Smooking Area');
+		$this->amenities = array('Wifi','AC','Bed','Almari Pakaian','Dispenser','Kursi & Meja Belajar','Dapur','Parkir Motor','Parkir Mobil','Kamar Mandi');
 
 		$this->load->model('madmin');
 
