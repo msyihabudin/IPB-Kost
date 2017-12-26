@@ -42,9 +42,10 @@ class Welcome extends CI_Controller
 			$marker['infowindow_content'] .= '<img src="'.base_url("public/image/{$value->photo}").'" class="media-object" style="width:150px">';
 			$marker['infowindow_content'] .= '</div>';
 			$marker['infowindow_content'] .= '<div class="media-body">';
-			$marker['infowindow_content'] .= '<h5 class="media-heading"><a href="'.base_url("welcome/detail/{$value->ID}").'">'.$value->name.'</a></h5>';
-			$marker['infowindow_content'] .= '<p>Harga : <strong>Rp. '.number_format($value->price).'</strong></p>';
-			$marker['infowindow_content'] .= '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora nihil doloremque saepe eos natus incidunt minus voluptatum consequatur maiores!</p>';
+			$marker['infowindow_content'] .= '<h5 class="media-heading"><a href="'.base_url("detail/kost/{$value->ID}").'">'.$value->name.'</a></h5>';
+			$marker['infowindow_content'] .= '<p>Harga: <strong>Rp '.number_format($value->price).'</strong></p>';
+			$marker['infowindow_content'] .= '<p>Fasilitas: '.$value->amenities.'</p>';
+			$marker['infowindow_content'] .= '<p><a href="'.base_url("detail/kost/{$value->ID}").'" class="btn btn-xs btn-default">More Detail</a></p>';
 			$marker['infowindow_content'] .= '</div>';
 			$marker['infowindow_content'] .= '</div>';
 			$marker['icon'] = base_url("public/icon/lodging-2.png");
@@ -62,7 +63,7 @@ class Welcome extends CI_Controller
 	{
 		$this->db->select('kost.*, kategori.name as kategori');
 
-		$this->db->join('kategorikost', 'kost.ID = kategorikost.kategori_id', 'left');
+		$this->db->join('kategorikost', 'kost.ID = kategorikost.kost_id', 'left');
 
 		$this->db->join('kategori', 'kategorikost.kategori_id = kategori.kategori_id', 'left');
 
@@ -84,8 +85,12 @@ class Welcome extends CI_Controller
 				break;
 		}
 
-		if( is_array(@$this->input->post('kategori')) )
-			$this->db->where_in('kategorikost.kategori_id', $this->input->post('kategori'));
+		if(is_array($this->input->get('kategori'))){
+			foreach($this->input->get('kategori') as $key => $row){
+				$this->db->or_where('kategorikost.kategori_id', $row);
+			}
+		}
+					
 
 		$this->db->group_by('kost.ID');
 
@@ -146,8 +151,14 @@ class Welcome extends CI_Controller
 
 		$this->db->join('kategori', 'kategorikost.kategori_id = kategori.kategori_id', 'left');
 
-		$this->db->where('kost.ID =='.$id);
+		$this->db->where('kost.ID ='.$id);
 
 		return $this->db->get("kost")->result();
+	}
+
+	function view($giftcard_id=-1)
+	{
+		$data['tes'] = "tes";
+		$this->load->view("modal/about", $data);
 	}
 }

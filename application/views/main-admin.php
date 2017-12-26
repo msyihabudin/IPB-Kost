@@ -24,8 +24,8 @@ $this->load->view('admin-header', $this->data);
                 <!-- /.row -->
 
                 <div class="jumbotron">
-                    <h1>Hello, world!</h1>
-                    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                    <h1>Selamat Datang!</h1>
+                    <p>Aplikasi ini memberikan informasi mengenai lokasi kosan terdekat dari Kampus IPB Cilibende dan Baranangsiang. Informasi berupa titik (point) keberadaan kosan dan fasilitas apa saja yang terdapat pada kostan tersebut. Informasi line sebagai jalur terdekat dari kosan menuju kampus.</p>
                     <p><a href="<?php echo base_url() ?>" class="btn btn-primary btn-lg" role="button">Cari Kost &raquo;</a>
                     </p>
                 </div>
